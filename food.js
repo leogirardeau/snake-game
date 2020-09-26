@@ -1,9 +1,12 @@
+import { onSnake, expandSnake } from "./snake.js";
+
 let food = { x: 0, y: 0 };
 const EXPANSION_RATE = 1;
 
 export function update() {
   if (onSnake(food)) {
     expendSnake(EXPANSION_RATE);
+    food = { x: 20, y: 10 };
   }
 }
 
