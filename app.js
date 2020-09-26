@@ -5,6 +5,7 @@ import {
 } from "./snake.js";
 
 let lastRenderTime = 0;
+const gameBoard = document.getElementById("game-board");
 
 function main(currentTime) {
   window.requestAnimationFrame(main);
@@ -17,10 +18,12 @@ function main(currentTime) {
   draw();
 }
 
+window.requestAnimationFrame(main);
+
 function update() {
   updateSnake();
 }
 
 function draw() {
-  drawSnake();
+  drawSnake(gameBoard);
 }
