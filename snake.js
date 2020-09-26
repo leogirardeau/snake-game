@@ -1,6 +1,6 @@
 import { getInputDirection } from "./input.js";
 
-export const SNAKE_SPEED = 1;
+export const SNAKE_SPEED = 3;
 const snakeBody = [{ x: 11, y: 11 }];
 let newSegments = 0;
 
@@ -29,10 +29,19 @@ export function expandSnake(amount) {
   newSegments += amount;
 }
 
-export function onSnake(position) {
-  return snakeBody.some((segment) => {
+export function onSnake(position, { ingoreHead = false } = {}) {
+  return snakeBody.some((segment, index) => {
+    if (ingoreHead && index === 0) return false;
     return equalPositions(segment, position);
   });
+}
+
+export function getSnakeHead() {
+  return snakeBody[0];
+}
+
+export function snakeIntersection() {
+  return onSnake(snakeBody[0], { ingoreHead: true });
 }
 
 function equalPositions(pos1, pos2) {
